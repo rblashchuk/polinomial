@@ -71,10 +71,7 @@ protected:
     monomial poly[len]{};
 };
 
-template <int n> //check
-struct A{
-    int val = n;
-};
+
 
 TEST(VALUE_TEST, TEST){
     initializer_list<monomial> a{monomial{2, 5}, monomial{1, 3}, monomial{3, 1}, monomial{4, 1}};
@@ -87,8 +84,6 @@ int main() {
     constexpr Polynomial<4> pol = {monomial{2, 5}, monomial{1, 3}, monomial{3, 1}, monomial{4, 1}};
     constexpr int res = pol.val_at_point(1);
     cout << pol;
-
-    A<res> test;
 
     RUN_ALL_TESTS();
     return 0;
