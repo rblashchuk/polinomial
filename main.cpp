@@ -6,17 +6,13 @@
 using namespace std;
 
 constexpr long long pow(int x, int p) {
-    if (p == 0) {
-        return 1;
-
-    } else if (p == 1) {
-        return x;
-
-    } else if (p % 2 == 1) {
-        return pow(x * x, p / 2) * x;
-
-    } else {
-        return pow(x * x, p / 2);
+    if (x) {
+        if (p == 0) return 1;
+        else return x * pow(x, p - 1);
+    }
+    else{
+        if (p) return 0;
+        else return 1;
     }
 }
 
@@ -78,13 +74,12 @@ protected:
 TEST(VALUE_TEST, TEST){
     initializer_list<monomial> a{monomial{2, 5}, monomial{1, 3}, monomial{3, 1}, monomial{4, 1}};
     Polynomial<4> pol(a);
-    int res = pol.val_at_point(1);
-    ASSERT_TRUE(res == 10);
+    int res = pol.val_at_point(2);
+    ASSERT_TRUE(res == 50);
 };
 
 int main() {
     constexpr Polynomial<4> pol = {monomial{2, 5}, monomial{1, 3}, monomial{3, 1}, monomial{4, 1}};
-    constexpr int res = pol.val_at_point(1);
     cout << pol;
 
     RUN_ALL_TESTS();
